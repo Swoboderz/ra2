@@ -161,8 +161,8 @@ e1:
 		RequiresCondition: !parachute
 		DeploySound: igidepa.wav # igidepb.wav
 		UndeploySound: igidepa.wav # igidepb.wav
-	# TODO: TakeCover is not yet conditional
-	-TakeCover:
+	TakeCover:
+		RequiresCondition: undeployed
 	Turreted:
 		RealignDelay: -1
 		TurnSpeed: 50
