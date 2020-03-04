@@ -305,16 +305,21 @@ gaairc:
 	Power:
 		Amount: -50
 	Reservable:
+		MaxReserves: 4
 	Exit@1:
+		ExitCell: 1,1
 		SpawnOffset: -370,370,0
 		Facing: 224
 	Exit@2:
+		ExitCell: 1,0
 		SpawnOffset: 370,-370,0
 		Facing: 224
 	Exit@3:
+		ExitCell: 2,0
 		SpawnOffset: 1000,370,0
 		Facing: 224
 	Exit@4:
+		ExitCell: 2,1
 		SpawnOffset: 350,1000,0
 		Facing: 224
 	Production:
