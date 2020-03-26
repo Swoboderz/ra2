@@ -329,6 +329,7 @@
 	-DrawLineToTarget:
 	OwnerLostAction:
 		Action: Kill
+		DeathTypes: BulletDeath
 	SelectionDecorations:
 		Palette: pips
 	Selectable:
@@ -549,15 +550,23 @@
 		DamagedSounds: gblacrua.wav, gblacrub.wav
 		DestroyedSounds: gblacrua.wav, gblacrub.wav
 
+^DamagedByRadiation:
+	DamagedByTintedCells:
+		Damage: 200
+		DamageLevel: 1
+		DamageTypes: RadiationDeath, DefaultDeath
+
 ^Infantry:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^SpriteActor
 	Inherits@3: ^GainsExperience
 	Inherits@4: ^ChronoDisable
 	Inherits@5: ^CrateStatModifiers
+	Inherits@6: ^DamagedByRadiation
 	Health:
 	OwnerLostAction:
 		Action: Kill
+		DeathTypes: BulletDeath
 	HitShape:
 		Type: Circle
 			Radius: 128
@@ -608,6 +617,7 @@
 		Types: Infantry
 	Crushable:
 		CrushSound: igensqua.wav
+	EdibleByLeap:
 	Guard:
 		Voice: Attack
 	Guardable:
@@ -632,7 +642,7 @@
 	Repairable:
 		RepairActors: cahosp
 		Voice: Move
-	Chronoshiftable:
+	ChronoshiftableWithSpriteEffect:
 		ExplodeInstead: true
 	MapEditorData:
 		Categories: Infantry
@@ -812,6 +822,7 @@
 	Inherits@6: ^ParachutableVehicle
 	OwnerLostAction:
 		Action: Kill
+		DeathTypes: BulletDeath
 	Mobile:
 		Voice: Move
 		TurnSpeed: 5
@@ -859,7 +870,10 @@
 	MustBeDestroyed:
 	Voiced:
 		VoiceSet: AlliedVehicleVoice
-	Chronoshiftable:
+	ChronoshiftableWithSpriteEffect:
+		Image: chrono
+		WarpInSequence: warpin
+		WarpOutSequence: warpout
 		ChronoshiftSound: schrmov.wav
 		ReturnToOrigin: false
 	MapEditorData:
@@ -896,6 +910,7 @@
 	Inherits@1: ^ExistsInWorld
 	OwnerLostAction:
 		Action: Kill
+		DeathTypes: BulletDeath
 	Targetable@airborne:
 		TargetTypes: Air
 		RequiresCondition: airborne
@@ -944,6 +959,13 @@
 	Inherits@1: ^NeutralAircraft
 	Inherits@2: ^GainsExperience
 	WithTextControlGroupDecoration:
+	ChronoshiftableWithSpriteEffect:
+		Image: chrono
+		WarpInSequence: warpin
+		WarpOutSequence: warpout
+		ChronoshiftSound: schrmov.wav
+		ReturnToOrigin: false
+		RequiresCondition: !airborne
 
 ^Plane:
 	Inherits: ^Aircraft
@@ -1005,6 +1027,7 @@
 	Inherits@5: ^CrateStatModifiers
 	OwnerLostAction:
 		Action: Kill
+		DeathTypes: BulletDeath
 	Mobile:
 		Voice: Move
 		Locomotor: naval
@@ -1055,7 +1078,10 @@
 	MustBeDestroyed:
 	Voiced:
 		VoiceSet: SovietNavalVoice
-	Chronoshiftable:
+	ChronoshiftableWithSpriteEffect:
+		Image: chrono
+		WarpInSequence: warpin
+		WarpOutSequence: warpout
 		ChronoshiftSound: schrmov.wav
 		ReturnToOrigin: false
 	MapEditorData:
@@ -1112,6 +1138,7 @@
 	MapEditorData:
 		Categories: Tree
 	Interactable:
+	MirageTarget:
 
 ^StreetSign:
 	Inherits: ^Tree

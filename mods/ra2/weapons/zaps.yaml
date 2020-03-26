@@ -19,8 +19,9 @@ AssaultBolt:
 	Range: 2c0
 	Report: iteschaa.wav
 	ValidTargets: TeslaBoost
-	Projectile: TeslaZap
-		Image: litningupg
+	Projectile: ElectricBolt
+		Colors: FFFF54, FFFF54, FFFFFF
+		ZOffset: 2047
 	Warhead@charge: GrantExternalCondition
 		Range: 42
 		Duration: 75
@@ -41,8 +42,9 @@ OPCoilBolt:
 	Inherits: CoilBolt
 	Range: 8c512
 	Report: btesat2a.wav
-	Projectile: TeslaZap
-		Image: litningupg
+	Projectile: ElectricBolt
+		Colors: FFFF54, FFFF54, FFFFFF
+		ZOffset: 2047
 	Warhead@1Dam: SpreadDamage
 		Damage: 300
 
@@ -110,6 +112,7 @@ PrismShot:
 	Projectile: LaserZap
 		Width: 70
 		UsePlayerColor: true
+		ZOffset: 2047
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
 		Damage: 120
@@ -136,6 +139,7 @@ Comet:
 		Width: 50
 		Duration: 15
 		UsePlayerColor: true
+		ZOffset: 2047
 	Warhead@1Dam: SpreadDamage
 		Spread: 800
 		Damage: 100
@@ -173,13 +177,14 @@ RadBeamWeapon:
 	Range: 6c0
 	ReloadDelay: 100
 	Report: idesat1a.wav
-	Projectile: LaserZap
-		Width: 20
-		Duration: 7
-		Color: B900FF00
+	Projectile: RadBeam
+		Amplitude: 476
+		WaveLength: 384
+		ZOffset: 2047
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
 		Damage: 125
+		InvalidTargets: Structure, Wall, ImmuneToRadiation
 		Versus:
 			None: 100
 			Flak: 100
@@ -207,13 +212,25 @@ CRRadBeamWeapon:
 	Warhead@1Dam: SpreadDamage
 		Damage: 175
 
+RadEruptionWeapon:
+	ReloadDelay: 60
+	Report: idesat2a.wav
+	Warhead@1Radiation: CreateTintedCells
+		Spread: 2c0
+		Falloff: 100, 75, 50, 25, 0
+		Level: 250
+		MaxLevel: 500
+
 NeutronRifle:
 	ValidTargets: Ground
 	ReloadDelay: 120
 	Range: 5c0
 	Report: ichratta.wav
-	Projectile: TeslaZap
-		Palette: highlight
+	Projectile: RadBeam
+		Amplitude: 476
+		WaveLength: 384
+		Color: 80C8FF
+		ZOffset: 2047
 	Warhead@Damage: SpreadDamage
 		Spread: 64
 		Damage: 8
@@ -230,3 +247,46 @@ CRNeutronRifle:
 	Range: 6c0
 	Warhead@Disable: GrantExternalCondition
 		Duration: 350
+
+LightningStorm:
+	ReloadDelay: 0
+	Range: 7c0
+	Projectile: InstantHit
+		Blockable: false
+	Warhead@1Eff: CreateEffect
+		Delay: 0
+		Explosions: weathercloud1, weathercloud2, weathercloud3
+		UsePlayerPalette: true
+		ExplosionPalette: player
+		ValidTargets: Ground, Water
+		ImpactActors: false
+	Warhead@2Dam: SpreadDamage
+		Delay: 56
+		Spread: 3c0
+		Damage: 165
+		AffectsParent: true
+		Versus:
+			None: 100
+			Flak: 100
+			Plate: 100
+			Light: 100
+			Medium: 100
+			Heavy: 100
+			Wood: 100
+			Steel: 100
+			Concrete: 3
+			Drone: 100
+			Rocket: 100
+		DamageTypes: Prone100Percent
+	Warhead@3Eff: CreateEffect
+		Delay: 56
+		Explosions: weatherbolt1, weatherbolt2, weatherbolt3
+		ValidTargets: Ground, Water
+		ImpactSounds: sweastra.wav, sweastrb.wav, sweastrc.wav, sweastrd.wav
+	Warhead@4Eff: CreateEffect
+		Delay: 56
+		Explosions: weatherboltexplosion
+		ValidTargets: Ground, Water
+	Warhead@5Smu: LeaveSmudge
+		Delay: 56
+		SmudgeType: LargeScorch

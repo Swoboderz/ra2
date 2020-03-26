@@ -243,6 +243,10 @@ World:
 	ResourceClaimLayer:
 	BridgeLayer:
 	WarheadDebugOverlay:
+	CustomTerrainDebugOverlay:
+	TintedCellsLayer@radiation:
+		Darkest: 32
+		Brightest: 128
 	SpawnMapActors:
 	MapBuildRadius:
 		AllyBuildRadiusCheckboxDisplayOrder: 4
@@ -343,6 +347,7 @@ World:
 	ObjectivesPanel:
 		PanelName: SKIRMISH_STATS
 	LoadWidgetAtGameStart:
+		ShellmapRoot: MAINMENU_PRERELEASE_NOTIFICATION
 	TimeLimitManager:
 		TimeLimitDisplayOrder: 1
 		TimeLimitWarnings:

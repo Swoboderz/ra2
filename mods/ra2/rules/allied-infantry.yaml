@@ -60,6 +60,19 @@ dog:
 		HP: 100
 	Mobile:
 		Speed: 120
+	-GainsExperience:
+	-FirepowerMultiplier@VETERAN:
+	-FirepowerMultiplier@ELITE:
+	-DamageMultiplier@VETERAN:
+	-DamageMultiplier@ELITE:
+	-SpeedMultiplier@VETERAN:
+	-SpeedMultiplier@ELITE:
+	-ReloadDelayMultiplier@VETERAN:
+	-ReloadDelayMultiplier@ELITE:
+	-SelfHealing@ELITE:
+	-InaccuracyMultiplier@ELITE:
+	-WithDecoration@VETERAN:
+	-WithDecoration@ELITE:
 	Passenger:
 		PipType: Yellow
 	RevealsShroud:
@@ -87,8 +100,6 @@ dog:
 		Range: 5c0
 	Voiced:
 		VoiceSet: DogVoice
-	ProducibleWithLevel:
-		Prerequisites: barracks.infiltrated
 	-TakeCover:
 	QuantizeFacingsFromSequence:
 		Sequence: stand
@@ -100,6 +111,7 @@ dog:
 			PsychicDeath: 1
 			ElectroDeath: 2
 	-WithDeathAnimation@effect:
+	-SpawnActorOnDeath@flames:
 
 e1:
 	Inherits@1: ^Infantry
@@ -131,7 +143,7 @@ e1:
 		Range: 5c0
 	AttackFrontal:
 		Voice: Attack
-		RequiresCondition: !deployed
+		RequiresCondition: undeployed
 	AttackTurreted@deployed:
 		Armaments: deployed, deployed-elite
 		Voice: Attack
@@ -558,6 +570,8 @@ jumpjet:
 	Targetable@ground:
 		TargetTypes: Ground, Infantry, DetonateAttack, Disguise
 		RequiresCondition: !airborne
+	DamagedByTintedCells:
+		RequiresCondition: !airborne
 	-Passenger:
 	SpawnActorOnDeath:
 		Actor: jumpjet.husk
@@ -620,7 +634,15 @@ cleg:
 		VoiceSet: ChronoLegionnaireVoice
 	Armament@Temporal:
 		Weapon: NeutronRifle
+		LocalOffset: 320,128,1024
 	AttackFrontal:
 		Voice: Attack
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
+	ChronoshiftableWithSpriteEffect:
+		Image: chrono
+		WarpInSequence: warpin
+		WarpOutSequence: warpout
+		ChronoshiftSound: schrmov.wav
+		ReturnToOrigin: false
+		ExplodeInstead: false

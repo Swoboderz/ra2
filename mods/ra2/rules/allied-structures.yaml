@@ -76,6 +76,9 @@ gacnst:
 	SpawnActorsOnSell@soviets:
 		ActorTypes: e2, e2, e2, e2, engineer
 		Factions: cuba, libya, iraq, russia
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: engineer, e1, e1, e1, e1
 
 gapowr:
 	Inherits: ^BaseBuilding
@@ -118,6 +121,9 @@ gapowr:
 	PowerTooltip:
 	Targetable:
 		TargetTypes: Ground, C4, DetonateAttack, Structure, SpyInfiltrate
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1, e1
 
 gapile:
 	Inherits: ^BaseBuilding
@@ -187,6 +193,9 @@ gapile:
 		Proxy: barracks.infiltrated
 	Targetable:
 		TargetTypes: Ground, C4, DetonateAttack, Structure, SpyInfiltrate
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1
 
 garefn:
 	Inherits: ^BaseBuilding
@@ -244,6 +253,9 @@ garefn:
 		Amount: -50
 	Targetable:
 		TargetTypes: Ground, C4, DetonateAttack, Structure, SpyInfiltrate
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1
 
 gaairc:
 	Inherits: ^BaseBuilding
@@ -296,8 +308,8 @@ gaairc:
 		Sequence: idle-mid
 		PauseOnCondition: lowpower
 		RequiresCondition: !build-incomplete
-	WithIdleOverlay@dish:
-		Sequence: idle-dish
+	WithIdleOverlay@lights:
+		Sequence: idle-lights
 		PauseOnCondition: lowpower
 		RequiresCondition: !build-incomplete
 	Targetable:
@@ -337,6 +349,9 @@ gaairc:
 		RequiresCondition: primary
 	InfiltrateForExploration:
 		Types: SpyInfiltrate
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1
 
 amradr:
 	Inherits: gaairc
@@ -446,6 +461,9 @@ gaweap:
 		Proxy: warfactory.infiltrated
 	Targetable:
 		TargetTypes: Ground, C4, DetonateAttack, Structure, SpyInfiltrate
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1, e1, e1
 
 gayard:
 	Inherits: ^BaseBuilding
@@ -622,6 +640,9 @@ gadept:
 		Amount: -25
 	ProvidesPrerequisite:
 		Prerequisite: repairpad
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1
 
 gatech:
 	Inherits: ^BaseBuilding
@@ -657,6 +678,9 @@ gatech:
 		Proxy: allies.tech.infiltrated
 	Targetable:
 		TargetTypes: Ground, C4, DetonateAttack, Structure, SpyInfiltrate
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1, e1, e1
 
 gawall:
 	Inherits: ^Wall
@@ -693,12 +717,13 @@ gapill:
 		Bounds: 50, 30, 0, -4
 	Armament:
 		Weapon: vulcan2
-		LocalOffset: 768,85,512
+		LocalOffset: 416,0,416
 		MuzzleSequence: muzzle
 		MuzzleSplitFacings: 8
 	AttackTurreted:
 		Voice: Attack
 		RequiresCondition: !build-incomplete
+	WithMuzzleOverlay:
 	Turreted:
 		TurnSpeed: 255
 	BodyOrientation:
@@ -852,6 +877,9 @@ gaorep:
 		Modifier: 25
 	Power:
 		Amount: -200
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1, e1
 
 gaspysat:
 	Inherits: ^BaseBuilding
@@ -887,6 +915,9 @@ gaspysat:
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1
 
 gagap:
 	Inherits: ^SupportBuilding
@@ -916,6 +947,9 @@ gagap:
 	RenderShroudCircle:
 	Power:
 		Amount: -100
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1
 
 gaweat:
 	Inherits: ^BaseBuilding
@@ -943,10 +977,31 @@ gaweat:
 		Range: 5c0
 	Power:
 		Amount: -200
-	# Nothing to disable at the moment
-	#GrantConditionOnPowerState@LOWPOWER:
-	#	Condition: lowpower
-	#	ValidPowerStates: Low, Critical
+	GrantConditionOnPowerState@LOWPOWER:
+		Condition: lowpower
+		ValidPowerStates: Low, Critical
+	WeatherControlSupportPower@LightningStorm:
+		OrderName: WeatherControlDevice
+		ChargeInterval: 15000
+		Icon: lightningstorm
+		Description: Lightning Storm
+		LongDesc: Control the weather to destroy enemy forces.
+		InsufficientPowerSpeechNotification: WeathercontrolDeviceOffline
+		EndChargeSpeechNotification: LightningStormReady
+		SelectTargetSpeechNotification: SelectTarget
+		LaunchSpeechNotification: LightningStormCreated
+		LaunchSound: sweaintr.wav
+		IncomingSpeechNotification: WeathercontrolDeviceDetected
+		DisplayTimerStances: Ally, Neutral, Enemy
+		DisplayBeacon: true
+		DisplayRadarPing: true
+		Weapon: LightningStorm
+		PauseOnCondition: lowpower
+		Cursor: weatherstorm
+		PaletteEffectType: LightningStorm
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1, e1, e1, e1
 
 gacsph:
 	Inherits: ^BaseBuilding
@@ -996,7 +1051,11 @@ gacsph:
 		KillCargo: False
 		SelectionCursor: chronosphere
 		TargetCursor: chronosphere
+		TargetOverlayPalette: effect75alpha
 		PauseOnCondition: lowpower
+	SpawnSurvivors:
+		DeathTypes: ExplosionDeath, BulletDeath
+		Actors: e1, e1, e1, e1, e1
 
 atesla:
 	Inherits: ^SupportBuilding
